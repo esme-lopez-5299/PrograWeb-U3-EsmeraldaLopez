@@ -22,8 +22,8 @@ namespace U3_Actividad1_Fruteria.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;user=root;password=root;database=fruteriashop", x => x.ServerVersion("5.7.18-mysql"));
+
+                optionsBuilder.UseMySql("server=localhost;user=root;password=root; TreatTinyAsBoolean=false ;database=fruteriashop;", x => x.ServerVersion("5.7.18-mysql"));
             }
         }
 

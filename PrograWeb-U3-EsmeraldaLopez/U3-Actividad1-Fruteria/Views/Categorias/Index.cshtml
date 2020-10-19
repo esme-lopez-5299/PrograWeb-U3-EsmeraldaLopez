@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<U3_Actividad1_Fruteria.Models.Categorias>
 @{
     Layout = "_LayoutAdmin";
 }
@@ -10,88 +10,23 @@
     <a class="mark" href="~/Categorias/Agregar">
         <h1>Nueva Categoria...</h1>
         <div class="botones">
-            <img src="../images/add.png" />
+            <img src="~/images/add.png" />
         </div>
     </a>
 
-    <div class="card">
-        <h1>Cítricos</h1>
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <h1>@item.Nombre</h1>
 
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
+            <div class="botones">
+                <a href="~/Categorias/Editar/@item.Id" class="btnEditar"></a>
+                <a href="~/Categorias/Eliminar/@item.Id" class="btnBorrar"></a>
+            </div>
         </div>
-    </div>
+    }
 
-    <div class="card">
-        <h1>Cítricos</h1>
 
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
 
-    <div class="card">
-        <h1>Cítricos</h1>
 
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1>Cítricos</h1>
-
-        <div class="botones">
-            <a href="~/Categorias/Editar" class="btnEditar"></a>
-            <a href="~/Categorias/Eliminar" class="btnBorrar"></a>
-        </div>
-    </div>
 </section>

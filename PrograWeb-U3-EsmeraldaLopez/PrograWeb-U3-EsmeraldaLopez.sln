@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practica1", "Practica1\Practica1.csproj", "{2C1D1321-81BE-4246-8096-1ABD8979AB2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "U3-Actividad1-Fruteria", "U3-Actividad1-Fruteria\U3-Actividad1-Fruteria.csproj", "{82D62ACE-28E6-40D2-9FC5-0EE6F88813F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "U3-Actividad1-Fruteria", "U3-Actividad1-Fruteria\U3-Actividad1-Fruteria.csproj", "{82D62ACE-28E6-40D2-9FC5-0EE6F88813F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

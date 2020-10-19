@@ -8,6 +8,8 @@ namespace U3_Actividad1_Fruteria.Controllers
 {
     public class AdminController : Controller
     {
+        [Route("Admin")]
+        [Route("Admin/Index")]
         public IActionResult Index()
         {
             return View();
