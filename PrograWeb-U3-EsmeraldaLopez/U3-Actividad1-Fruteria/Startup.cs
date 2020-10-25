@@ -20,6 +20,8 @@ namespace U3_Actividad1_Fruteria
             services.AddMvc();
         }
 
+        public IWebHostEnvironment Environment { get; set; }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -27,6 +29,8 @@ namespace U3_Actividad1_Fruteria
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            Environment = env;
 
             app.UseFileServer();
             app.UseRouting();

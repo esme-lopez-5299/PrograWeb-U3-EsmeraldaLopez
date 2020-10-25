@@ -15,9 +15,10 @@ namespace U3_Actividad1_Fruteria.Controllers
         {
             fruteriashopContext context = new fruteriashopContext();
             Repositories.Repository<Categorias> repos = new Repositories.Repository<Categorias>(context);
-            return View(repos.GetAll().OrderBy(x=>x.Nombre));
+            return View(repos.GetAll().Where(x=>x.Eliminado==false).OrderBy(x=>x.Nombre));
         }
-        
+
+        [HttpGet]
         public IActionResult Agregar()
         {
             return View();
@@ -104,45 +105,46 @@ namespace U3_Actividad1_Fruteria.Controllers
             //Dos tipos de eliminación
             //Fisica: Borro un registro de la bd: Operacion DELETE
             //Logica: Marco el registro como eliminado: Operación UPDATE
+            //try
+            //{
+
+            ////FISICA
+            //using (fruteriashopContext context = new fruteriashopContext())
+            //{
+            //    CategoriasRepository repos = new CategoriasRepository(context);
+            //    var categoria = repos.Get(c.Id);
+            //    repos.Delete(categoria);
+
+            //    return RedirectToAction("Index");
+
+            //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("", ex.Message);
+            //    return View(c);
+            //}
+
+
+            //Logica
             try
             {
+                using (fruteriashopContext context = new fruteriashopContext())
+                {
+                    CategoriasRepository repos = new CategoriasRepository(context);
+                    var categoria = repos.Get(c.Id);
+                    categoria.Eliminado = true;
+                    repos.Update(categoria);
+                    return RedirectToAction("Index");
 
-            //FISICA
-            using (fruteriashopContext context = new fruteriashopContext())
-            {
-                CategoriasRepository repos = new CategoriasRepository(context);
-                var categoria = repos.Get(c.Id);
-                repos.Delete(categoria);
-
-                return RedirectToAction("Index");
-
+                }
             }
-        }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
                 return View(c);
-    }
+            }
 
-
-    //Logica
-    //try { 
-    //using (fruteriashopContext context = new fruteriashopContext())
-    //{
-    //    CategoriasRepository repos = new CategoriasRepository(context);
-    //    var categoria = repos.Get(c.Id);
-    //    categoria.Eliminado = 1;
-    //    repos.Update(categoria);
-    //    return RedirectToAction("Index");
-
-    //}
-    //    }
-    //catch (Exception ex)
-    //{
-    //    ModelState.AddModelError("", ex.Message);
-    //    return View(c);
-    //}
-
-}
+        }
     }
 }

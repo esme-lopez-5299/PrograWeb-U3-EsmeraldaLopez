@@ -29,5 +29,39 @@ namespace U3_Actividad1_Fruteria.Repositories
 
         }
 
+        public override bool Validate(Productos entidad)
+        {
+            if(entidad.Precio==null || entidad.Precio<=0)
+            {
+                throw new Exception("Debe indicar el precio del producto");
+            }
+
+            if(string.IsNullOrWhiteSpace(entidad.UnidadMedida))
+            {
+                throw new Exception("Debe indicar la unidad de medida");
+            }
+            if (string.IsNullOrWhiteSpace(entidad.Descripcion))
+            {
+                throw new Exception("Debe indicar la descripción del producto.");
+            }
+            if(string.IsNullOrWhiteSpace(entidad.Nombre))
+            {
+                throw new Exception("Debe indicar el nombre del producto.");
+            }
+            if(Context.Productos.Any(x=> x.Nombre == entidad.Nombre && x.Id!=entidad.Id))
+            {
+                throw new Exception("Ya existe un producto registrado con el mismo nombre");
+            }
+
+            if (!Context.Categorias.Any(x => x.Id == entidad.IdCategoria && x.Eliminado ==false ))
+            {
+                throw new Exception("No existe la categoria especificada");
+            }
+
+
+
+            return true;
+        }
+
     }
 }
