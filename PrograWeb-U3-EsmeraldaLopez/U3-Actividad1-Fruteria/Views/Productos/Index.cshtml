@@ -22,7 +22,7 @@
                     }
                 }
             </select>*@
-        <select asp-for="IdCategoria" asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))" style="width:100%;margin: 10px 0" onchange="this.form.submit()">
+        <select name="IdCategoria" id="ddlCategorias"  asp-for="IdCategoria" asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))" style="width:100%;margin: 10px 0" onchange="this.form.submit()">
             <option value="">Ver todos los productos</option>
         </select>
 

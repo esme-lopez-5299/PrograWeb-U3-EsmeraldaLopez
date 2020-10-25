@@ -31,7 +31,7 @@ namespace Actividad1_FruitStore.Controllers
             ProductosRepository productosRepository = new ProductosRepository(context);
 
             int? id = null;
-            vm.Categorias = categoriasRepository.GetAll();
+            vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
             vm.Productos = productosRepository.GetProductosByCategoria(id);
 
             return View(vm);
@@ -45,8 +45,17 @@ namespace Actividad1_FruitStore.Controllers
             CategoriasRepository categoriasRepository = new CategoriasRepository(context);
             ProductosRepository productosRepository = new ProductosRepository(context);
 
-            vm.Categorias = categoriasRepository.GetAll();
-            vm.Productos = productosRepository.GetProductosByCategoria(vm.IdCategoria);
+            vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
+            if (vm.IdCategoria == 0)
+            {
+                int? id = null;
+                vm.Productos = productosRepository.GetProductosByCategoria(id);
+            }
+            else
+            {
+                vm.Productos = productosRepository.GetProductosByCategoria(vm.IdCategoria);
+            }
+            
 
             return View(vm);
         }
@@ -65,16 +74,28 @@ namespace Actividad1_FruitStore.Controllers
         public IActionResult Agregar(ProductosViewModel vm)
         {
             fruteriashopContext context = new fruteriashopContext();
-            if (vm.Archivo.ContentType != "image/jpeg" || vm.Archivo.Length > 1024 * 1024 * 2)
-            {
-                ModelState.AddModelError("", "Debe seleccionar un archivo jpg de menos de 2MB");
-                CategoriasRepository categoriasRepository = new CategoriasRepository(context);
-                vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
-                return View(vm);
-            }
+            
             
             try
             {
+
+                if (vm.Archivo == null)
+                {
+                    ModelState.AddModelError("", "Debe seleccionar un archivo");
+                    CategoriasRepository categoriasRepository = new CategoriasRepository(context);
+                    vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
+                    return View(vm);
+                }
+                else
+                {
+                    if (vm.Archivo.ContentType != "image/jpeg" || vm.Archivo.Length > 1024 * 1024 * 2)
+                    {
+                        ModelState.AddModelError("", "Debe seleccionar un archivo jpg de menos de 2MB");
+                        CategoriasRepository categoriasRepository = new CategoriasRepository(context);
+                        vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
+                        return View(vm);
+                    }
+                }
                 
                 ProductosRepository repos = new ProductosRepository(context);
                 repos.Insert(vm.Producto);
@@ -130,6 +151,7 @@ namespace Actividad1_FruitStore.Controllers
                     ModelState.AddModelError("", "Debe seleccionar un archivo jpg de menos de 2MB");
                     CategoriasRepository categoriasRepository = new CategoriasRepository(context);
                     vm.Categorias = categoriasRepository.GetAll().Where(x => x.Eliminado == false);
+                    
                     return View(vm);
                 }
             }

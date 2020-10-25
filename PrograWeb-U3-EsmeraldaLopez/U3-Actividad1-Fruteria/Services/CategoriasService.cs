@@ -17,7 +17,7 @@ namespace U3_Actividad1_Fruteria.Services
             using (fruteriashopContext context = new fruteriashopContext())
             {
                 Repositories.Repository<Categorias> repos = new Repositories.Repository<Categorias>(context);
-                Categorias = repos.GetAll().OrderBy(x => x.Nombre).ToList();
+                Categorias = repos.GetAll().Where(x => x.Eliminado == false).OrderBy(x => x.Nombre).ToList();
             }
             
         }
