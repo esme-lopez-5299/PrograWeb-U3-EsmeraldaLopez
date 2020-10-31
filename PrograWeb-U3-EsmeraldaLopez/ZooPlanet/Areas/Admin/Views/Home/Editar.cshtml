@@ -21,7 +21,7 @@
     <input step="0.1" asp-for="Animalito.Tamaño" />
     <label>Observaciones:</label>
     <textarea asp-for="Animalito.Observaciones"></textarea>
-
+    <p>@Html.ValidationSummary()</p>
     <input type="submit" value="Editar" />
 
     <a href="~/Administrador">
